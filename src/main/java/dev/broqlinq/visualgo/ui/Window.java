@@ -1,8 +1,7 @@
-package dev.broqlinq.visualgo.ui.sort;
+package dev.broqlinq.visualgo.ui;
 
-import dev.broqlinq.visualgo.ui.sort.dialog.DialogType;
-import dev.broqlinq.visualgo.ui.sort.dialog.Dialogs;
-import dev.broqlinq.visualgo.ui.sort.dialog.YesNoChoice;
+import dev.broqlinq.visualgo.ui.dialog.DialogType;
+import dev.broqlinq.visualgo.ui.dialog.Dialogs;
 
 import javax.swing.*;
 import java.awt.*;

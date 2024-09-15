@@ -1,7 +1,7 @@
 package dev.broqlinq.visualgo;
 
 import com.formdev.flatlaf.FlatIntelliJLaf;
-import dev.broqlinq.visualgo.ui.sort.Window;
+import dev.broqlinq.visualgo.ui.Window;
 
 public class Launcher {
 

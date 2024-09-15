@@ -1,4 +1,4 @@
-package dev.broqlinq.visualgo.ui.sort.dialog;
+package dev.broqlinq.visualgo.ui.dialog;
 
 import javax.swing.*;
 
