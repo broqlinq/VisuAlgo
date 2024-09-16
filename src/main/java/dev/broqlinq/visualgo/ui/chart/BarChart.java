@@ -1,8 +1,7 @@
 package dev.broqlinq.visualgo.ui.chart;
 
-import dev.broqlinq.visualgo.ui.util.ArrayListener;
+import dev.broqlinq.visualgo.ui.util.*;
 import dev.broqlinq.visualgo.ui.util.DefaultSingleSelectionModel;
-import dev.broqlinq.visualgo.ui.util.ObservableArray;
 import dev.broqlinq.visualgo.ui.util.SingleSelectionModel;
 
 import javax.swing.*;
@@ -42,7 +41,18 @@ public class BarChart<N extends Number> extends JPanel {
     }
 
     private void initListeners() {
-        arrayListener = _ -> revalidate();
+        arrayListener = e -> {
+            switch (e) {
+                case ArrayEvent.ValueChanged<N> v -> {
+//                    getComponent(v.getIndex()).revalidate();
+                }
+                case ArrayEvent.ValuesSwapped<N> v -> {
+//                    getComponent(v.getFirstIndex()).revalidate();
+//                    getComponent(v.getSecondIndex()).revalidate();
+                }
+            }
+            revalidate();
+        };
         model.addArrayListener(arrayListener);
 
         barChartColorModelListener = e -> {
@@ -82,6 +92,14 @@ public class BarChart<N extends Number> extends JPanel {
             }
         };
         addPropertyChangeListener(barChartPropertyHandler);
+    }
+
+    public int getSelectedIndex() {
+        return selectionModel.getSelectedIndex();
+    }
+
+    public void setSelectedIndex(int index) {
+        selectionModel.setSelectedIndex(index);
     }
 
     private void updateBars() {
@@ -171,4 +189,13 @@ public class BarChart<N extends Number> extends JPanel {
             firePropertyChange(PROPERTY_NAME_MODEL, oldModel, model);
         }
     }
+
+    public N getValue(int index) {
+        return model.get(index);
+    }
+
+    public void clearSelection() {
+        selectionModel.clearSelection();
+    }
+
 }

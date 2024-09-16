@@ -14,6 +14,20 @@ public enum YesNoCancelChoice {
         this.swingValue = swingValue;
     }
 
+    public static YesNoCancelChoice fromSwingValue(int swingValue) {
+        return switch (swingValue) {
+            case JOptionPane.YES_OPTION -> YES;
+            case JOptionPane.NO_OPTION -> NO;
+            case JOptionPane.CANCEL_OPTION,
+                 JOptionPane.CLOSED_OPTION-> CANCEL;
+            default -> throw new IllegalArgumentException("Invalid swing value: " + swingValue);
+        };
+    }
+
+    static YesNoCancelChoice fromOrdinal(int ordinal) {
+        return values()[ordinal];
+    }
+
     public boolean yes() {
         return this == YES;
     }
@@ -24,9 +38,5 @@ public enum YesNoCancelChoice {
 
     public boolean cancel() {
         return this == CANCEL;
-    }
-
-    static YesNoCancelChoice fromOrdinal(int ordinal) {
-        return values()[ordinal];
     }
 }

@@ -2,6 +2,7 @@ package dev.broqlinq.visualgo.ui.util;
 
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.function.IntFunction;
 
 public class DefaultObservableArray<T> extends AbstractObservableArray<T> {
 
@@ -16,6 +17,26 @@ public class DefaultObservableArray<T> extends AbstractObservableArray<T> {
     public DefaultObservableArray(Collection<T> values, Comparator<? super T> comparator) {
         super(comparator);
         this.values = (T[]) values.toArray();
+    }
+
+    @Override
+    public void update(int fromIndex, int toIndex, IntFunction<T> mapper) {
+        if (fromIndex > toIndex)
+            throw new IllegalArgumentException("'from' index cannot be greater than 'to' index: " + fromIndex + " > " + toIndex);
+
+        boolean anyValueChanged = false;
+        for (int i = fromIndex; i < toIndex; i++) {
+            T newValue = mapper.apply(i);
+            if (newValue == null || newValue != values[i]) {
+                values[i] = mapper.apply(i);
+                anyValueChanged = true;
+            }
+        }
+
+        if (anyValueChanged) {
+            var e = new ArrayEvent.RangeChanged<T>(this, fromIndex, toIndex);
+            fireArrayEvent(e);
+        }
     }
 
     @Override

@@ -1,6 +1,10 @@
 package dev.broqlinq.visualgo.ui.util;
 
+import java.util.function.IntFunction;
+
 public interface ObservableArray<T> {
+
+    void update(int fromIndex, int toIndex, IntFunction<T> mapper);
 
     T set(int index, T value);
 

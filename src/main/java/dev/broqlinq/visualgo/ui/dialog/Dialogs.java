@@ -14,7 +14,7 @@ public final class Dialogs {
                 JOptionPane.YES_NO_OPTION,
                 type.swingValue
         );
-        return YesNoChoice.fromOrdinal(choice);
+        return YesNoChoice.fromSwingValue(choice);
     }
 
     public static YesNoCancelChoice confirmOrCancel(String title, String message, DialogType type) {
@@ -25,6 +25,6 @@ public final class Dialogs {
                 JOptionPane.YES_NO_CANCEL_OPTION,
                 type.swingValue
         );
-        return YesNoCancelChoice.fromOrdinal(choice);
+        return YesNoCancelChoice.fromSwingValue(choice);
     }
 }

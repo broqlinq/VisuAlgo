@@ -68,4 +68,32 @@ public abstract sealed class ArrayEvent<T> extends EventObject {
                     + ']';
         }
     }
+
+    public static final class RangeChanged<T> extends ArrayEvent<T> {
+
+        private final int fromIndex;
+        private final int toIndex;
+
+        public RangeChanged(Object source, int fromIndex, int toIndex) {
+            super(source);
+            this.fromIndex = fromIndex;
+            this.toIndex = toIndex;
+        }
+
+        public int getFromIndex() {
+            return fromIndex;
+        }
+
+        public int getToIndex() {
+            return toIndex;
+        }
+
+        @Override
+        public String toString() {
+            return "ArrayChanged.RangeChanged [source=" + source
+                    + ", fromIndex=" + fromIndex
+                    + ", toIndex=" + toIndex
+                    + ']';
+        }
+    }
 }
