@@ -29,6 +29,17 @@ public abstract class SortingTask<N extends Number & Comparable<N>> extends Swin
 //        chart.setSelectedIndex(index);
     }
 
+    @Override
+    protected abstract Void doInBackground() throws Exception;
+
+    protected int getArraySize() {
+        return chart.getModel().size();
+    }
+
+    protected N getArrayValue(int index) {
+        return chart.getModel().get(index);
+    }
+
     protected final void updateArrayRange(int fromIndex, int toIndex, IntFunction<N> mapper) {
         chart.getModel().update(fromIndex, toIndex, mapper);
     }

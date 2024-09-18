@@ -1,7 +1,6 @@
 package dev.broqlinq.visualgo.ui.util;
 
-import java.util.Collection;
-import java.util.Comparator;
+import java.util.*;
 import java.util.function.IntFunction;
 
 public class DefaultObservableArray<T> extends AbstractObservableArray<T> {
@@ -59,6 +58,14 @@ public class DefaultObservableArray<T> extends AbstractObservableArray<T> {
     @Override
     public int size() {
         return values.length;
+    }
+
+    @Override
+    public void shuffle() {
+        List<T> temp = Arrays.asList(values);
+        Collections.shuffle(temp);
+        var e = new ArrayEvent.RangeChanged<T>(this, 0, values.length);
+        fireArrayEvent(e);
     }
 
     public static <T extends Comparable<T>> DefaultObservableArray<T> ofComparable(T[] values) {

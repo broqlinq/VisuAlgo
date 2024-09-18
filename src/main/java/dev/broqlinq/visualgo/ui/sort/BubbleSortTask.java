@@ -16,30 +16,19 @@ public class BubbleSortTask<N extends Number & Comparable<N>> extends SortingTas
         for (int i = 0; i < len - 1; i++) {
             boolean swapped = false;
             for (int j = 0; j < len - i - 1; j++) {
-//                setSelectedIndex(j);
-                pause();
                 var x = chart.getValue(j);
                 var y = chart.getValue(j + 1);
                 if (x.compareTo(y) > 0) {
                     swapArrayValues(j, j + 1);
-//                    setSelectedIndex(j + 1);
                     swapped = true;
                     pause();
                 }
             }
 
-            clearSelection();
-
             if (!swapped) {
                 break;
             }
         }
-
-        for (int i = 0; i < len; i++) {
-            setSelectedIndex(i);
-            pause(15);
-        }
-        clearSelection();
 
         return null;
     }

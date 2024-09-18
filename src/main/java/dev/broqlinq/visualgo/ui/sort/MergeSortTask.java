@@ -18,12 +18,6 @@ public class MergeSortTask<N extends Number & Comparable<N>> extends SortingTask
         if (len != 0) {
             splitAndMerge(0, chart.getModel().size() - 1);
         }
-
-        for (int i = 0; i < len; i++) {
-            setSelectedIndex(i);
-            pause(12);
-        }
-
         return null;
     }
 
@@ -68,7 +62,6 @@ public class MergeSortTask<N extends Number & Comparable<N>> extends SortingTask
             setArrayValue(lower + i, x);
             pause();
         }
-        clearSelection();
 
         return sorted;
     }

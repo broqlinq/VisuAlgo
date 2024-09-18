@@ -40,19 +40,13 @@ public class BarChart<N extends Number> extends JPanel {
         updateBars();
     }
 
+    @Override
+    public Dimension getMinimumSize() {
+        return getLayout().minimumLayoutSize(this);
+    }
+
     private void initListeners() {
-        arrayListener = e -> {
-            switch (e) {
-                case ArrayEvent.ValueChanged<N> v -> {
-//                    getComponent(v.getIndex()).revalidate();
-                }
-                case ArrayEvent.ValuesSwapped<N> v -> {
-//                    getComponent(v.getFirstIndex()).revalidate();
-//                    getComponent(v.getSecondIndex()).revalidate();
-                }
-            }
-            revalidate();
-        };
+        arrayListener = _ -> revalidate();
         model.addArrayListener(arrayListener);
 
         barChartColorModelListener = e -> {
@@ -164,6 +158,12 @@ public class BarChart<N extends Number> extends JPanel {
             color = barChartColorModel.getBaseColor();
         }
         bar.setBackground(color);
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        ((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        super.paintComponent(g);
     }
 
     public void setBarChartColorModel(BarChartColorModel colorModel) {

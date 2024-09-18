@@ -21,4 +21,6 @@ public interface ObservableArray<T> {
     void addArrayListener(ArrayListener<T> listener);
 
     void removeArrayListener(ArrayListener<T> listener);
+
+    void shuffle();
 }
