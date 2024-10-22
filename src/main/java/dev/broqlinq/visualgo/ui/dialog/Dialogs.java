@@ -1,7 +1,5 @@
 package dev.broqlinq.visualgo.ui.dialog;
 
-import com.formdev.flatlaf.ui.FlatOptionPaneUI;
-
 import javax.swing.*;
 
 public final class Dialogs {
@@ -37,16 +35,6 @@ public final class Dialogs {
                 type.swingValue
         );
         return YesNoCancelChoice.fromSwingValue(choice);
-    }
-
-    public static <N extends Number> N numericInput(String title, String message, N initialValue, N minValue, N maxValue, Class<N> type) {
-        NumberInputForm<N> form = new NumberInputForm<>(message, initialValue, minValue, maxValue);
-        JDialog dialog = new JDialog((JFrame) null, true);
-        dialog.setLocationRelativeTo(null);
-        dialog.getContentPane().add(form);
-        dialog.setVisible(true);
-        JOptionPane pane = new JOptionPane();
-        return null;
     }
 
 }

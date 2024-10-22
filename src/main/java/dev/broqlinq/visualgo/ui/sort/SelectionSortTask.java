@@ -20,6 +20,7 @@ public class SelectionSortTask<N extends Number & Comparable<N>> extends Sorting
             for (int j = i + 1; j < len; j++) {
                 var x = getArrayValue(j);
                 if (x.compareTo(min) < 0) {
+                    pause();
                     jMin = j;
                     min = x;
                 }
